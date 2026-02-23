@@ -30,8 +30,8 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-8 md:px-16 lg:px-24 flex items-center">
-      <div className="max-w-6xl mx-auto w-full">
+    <section id="contact" className="min-h-screen py-20 px-8 md:px-16 lg:px-24 flex items-center relative">
+      <div className="max-w-6xl mx-auto w-full relative">
         <motion.div 
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -139,18 +139,16 @@ export function Contact() {
                 <mask id="moonPhaseMask">
                   <circle cx="40" cy="40" r="28" fill="white" />
                   <motion.ellipse
-                    cx="40"
                     cy="40"
-                    rx="28"
                     ry="28"
                     fill="black"
-                    initial={{ rx: 28 }}
+                    initial={{ cx: 12, rx: 28 }}
                     animate={{
-                      rx: [28, 0, -28, 0, 28],
-                      x: [40, 40, 40, 40, 40]
+                      cx: [12, 40, 68, 40, 12],
+                      rx: [28, 28, 28, 28, 28]
                     }}
                     transition={{
-                      duration: 12,
+                      duration: 16,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}

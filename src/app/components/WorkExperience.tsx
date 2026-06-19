@@ -9,7 +9,9 @@ interface Experience {
   startDate: string;
   endDate: string;
   year: number;
+  current?: boolean;
   responsibilities: string[];
+  metrics?: string[];
 }
 
 export function WorkExperience() {
@@ -21,7 +23,14 @@ export function WorkExperience() {
       startDate: "May 2025",
       endDate: "Present",
       year: 2025,
-      responsibilities: []
+      current: true,
+      responsibilities: [
+        "Building end-to-end computer vision systems for clinical TB screening and livestock biometric identification — shipped first production release (ScanView v3.0.4) with DICOM support and auto-generated clinical PDF reports.",
+        "Designing a non-invasive bovine identification system using muzzle-pattern recognition, eliminating the need for physical ear tags in livestock tracking.",
+        "Owns full ML lifecycle: data strategy, annotation, model training, evaluation, and deployment-ready inference API.",
+        "Driving applied research across medical imaging and animal biometrics, translating novel CV architectures into production-grade systems.",
+      ],
+      metrics: [],
     },
     {
       company: "TATA Consultancy Services",
@@ -35,8 +44,9 @@ export function WorkExperience() {
         "Collaborated with other team members to design classification models using ensemble and boosting methods to classify customers as delinquent/non-delinquent which increased the test accuracy to 90%.",
         "Helped the client to achieve an increase in customers by 20% by analyzing the best customer based offers in various quarters and collaborating in solving issues by crafting visualization dashboards using Power BI.",
         "Designed a database system to detect, analyse and store the number of failed transactions to detect fraudulent attempts in hive tables by collecting data from various business sources.",
-        "Collaborated in designing python scripts for ETL jobs to efficiently collect data from various API's and filter them according to business needs. The ETL design reduced the error in data by 15%."
-      ]
+        "Collaborated in designing python scripts for ETL jobs to efficiently collect data from various API's and filter them according to business needs. The ETL design reduced the error in data by 15%.",
+      ],
+      metrics: ["90% classification accuracy", "20% customer growth", "15% error reduction in ETL"],
     },
     {
       company: "Healthcare Technology Innovation Center",
@@ -48,18 +58,20 @@ export function WorkExperience() {
       responsibilities: [
         "Crafted advanced mathematical models identifying key biometrics influenced by exercising; findings provided essential data leading to a redesign of core application features based on user feedback trends reported monthly.",
         "Coordinated with the team in developing and designing other features for the repose app which helped to raise the revenue generation by 10% through the app purchases.",
-        "Engineered an ECG based classification model for sleep stage analysis having testing accuracy of 87%."
-      ]
-    }
+        "Engineered an ECG based classification model for sleep stage analysis having testing accuracy of 87%.",
+      ],
+      metrics: ["87% ECG sleep classification accuracy", "10% revenue growth"],
+    },
   ];
 
-  // Get unique years and sort them
-  const years = Array.from(new Set(experiences.map(exp => exp.year))).sort((a, b) => b - a);
   const allYears = Array.from(
     new Set(
-      experiences.flatMap(exp => {
+      experiences.flatMap((exp) => {
         const start = parseInt(exp.startDate.split(' ')[1]);
-        const end = exp.endDate.toLowerCase() === 'present' ? new Date().getFullYear() : parseInt(exp.endDate.split(' ')[1]);
+        const end =
+          exp.endDate.toLowerCase() === 'present'
+            ? new Date().getFullYear()
+            : parseInt(exp.endDate.split(' ')[1]);
         const yearRange = [];
         for (let y = start; y <= end; y++) {
           yearRange.push(y);
@@ -71,18 +83,22 @@ export function WorkExperience() {
 
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
 
-  const filteredExperiences = selectedYear === 'all' 
-    ? experiences 
-    : experiences.filter(exp => {
-        const start = parseInt(exp.startDate.split(' ')[1]);
-        const end = exp.endDate.toLowerCase() === 'present' ? new Date().getFullYear() : parseInt(exp.endDate.split(' ')[1]);
-        return selectedYear >= start && selectedYear <= end;
-      });
+  const filteredExperiences =
+    selectedYear === 'all'
+      ? experiences
+      : experiences.filter((exp) => {
+          const start = parseInt(exp.startDate.split(' ')[1]);
+          const end =
+            exp.endDate.toLowerCase() === 'present'
+              ? new Date().getFullYear()
+              : parseInt(exp.endDate.split(' ')[1]);
+          return selectedYear >= start && selectedYear <= end;
+        });
 
   return (
     <section id="experience" className="min-h-screen py-20 px-8 md:px-16 lg:px-24">
       <div className="max-w-6xl mx-auto">
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,10 +109,10 @@ export function WorkExperience() {
             Work <span className="text-orange-400">Experience</span>
           </h2>
           <p className="text-gray-400 text-lg mb-8">
-            My professional journey in data science and analytics
+            My professional journey in AI, data science and analytics
           </p>
 
-          {/* Year Slider */}
+          {/* Year Filter */}
           <div className="relative flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
             <motion.button
               onClick={() => setSelectedYear('all')}
@@ -111,7 +127,7 @@ export function WorkExperience() {
             >
               All Years
             </motion.button>
-            
+
             {allYears.map((year) => (
               <motion.button
                 key={year}
@@ -147,16 +163,16 @@ export function WorkExperience() {
             </motion.div>
           ) : (
             filteredExperiences.map((exp, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="relative pl-8 md:pl-20 pb-16 last:pb-0"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
+                transition={{
                   duration: 0.6,
                   delay: index * 0.2,
-                  ease: "easeOut"
+                  ease: "easeOut",
                 }}
               >
                 {/* Year Badge */}
@@ -171,14 +187,13 @@ export function WorkExperience() {
                 </motion.div>
 
                 {/* Timeline dot */}
-                <motion.div 
+                <motion.div
                   className="absolute left-0 md:left-[26px] top-2 w-4 h-4 bg-orange-500 rounded-full border-4 border-black z-10"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.2 + 0.2 }}
                 >
-                  {/* Pulse effect */}
                   <motion.div
                     className="absolute inset-0 bg-orange-500 rounded-full"
                     animate={{
@@ -188,56 +203,79 @@ export function WorkExperience() {
                     transition={{
                       duration: 2,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                   />
                 </motion.div>
 
                 {/* Content card */}
-                <motion.div 
+                <motion.div
                   className="backdrop-blur-lg bg-white/5 rounded-lg p-6 border border-white/10 hover:border-orange-500 transition-all duration-300 shadow-xl"
-                  whileHover={{ 
+                  whileHover={{
                     y: -4,
-                    boxShadow: "0 10px 30px -10px rgba(251, 146, 60, 0.3)"
+                    boxShadow: "0 10px 30px -10px rgba(251, 146, 60, 0.3)",
                   }}
                 >
                   {/* Header */}
                   <div className="mb-4">
                     <div className="flex items-start justify-between flex-wrap gap-4 mb-3">
                       <div>
-                        <h3 className="text-2xl text-white mb-1 font-medium">
-                          {exp.position}
-                        </h3>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h3 className="text-2xl text-white font-medium">
+                            {exp.position}
+                          </h3>
+                          {exp.current && (
+                            <span className="px-2 py-0.5 text-xs font-medium bg-orange-500/20 text-orange-400 border border-orange-500/40 rounded-full">
+                              Current
+                            </span>
+                          )}
+                        </div>
                         <p className="text-orange-400 text-lg font-medium">
                           {exp.company}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-gray-400">
+                    <div className="flex flex-wrap gap-4 text-gray-400 mb-4">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        <span className="text-sm">{exp.startDate} - {exp.endDate}</span>
+                        <span className="text-sm">
+                          {exp.startDate} – {exp.endDate}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
                         <span className="text-sm">{exp.location}</span>
                       </div>
                     </div>
+
+                    {/* Metrics */}
+                    {exp.metrics && exp.metrics.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {exp.metrics.map((m, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-1 text-xs bg-orange-500/10 text-orange-300 rounded border border-orange-500/20"
+                          >
+                            {m}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Responsibilities */}
                   <ul className="space-y-3">
                     {exp.responsibilities.map((responsibility, idx) => (
-                      <motion.li 
+                      <motion.li
                         key={idx}
                         className="flex gap-3 text-gray-300 leading-relaxed"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ 
+                        transition={{
                           duration: 0.4,
-                          delay: index * 0.2 + idx * 0.1 + 0.3
+                          delay: index * 0.2 + idx * 0.1 + 0.3,
                         }}
                       >
                         <span className="text-orange-400 mt-1 flex-shrink-0">▹</span>

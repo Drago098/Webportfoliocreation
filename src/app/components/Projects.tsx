@@ -8,8 +8,12 @@ interface Project {
   description: string;
   technologies: string[];
   image: string;
+  metrics?: string[];
+  status?: 'building' | 'shipped';
+  role?: string;
   colaburl?: string;
   demoUrl?: string;
+
 }
 
 export function Projects() {
@@ -21,34 +25,77 @@ export function Projects() {
 
   const projects: Project[] = [
     {
-      title: "Physics-Only-Assistant",
-      description: "physics-constrained conversational AI system built with ollama+streamlit",
-      technologies: ["Python", "Ollama", "RAG", "Streamlit"],
-      image: "https://images.unsplash.com/photo-1758685734312-5134968399a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaHlzaWNzJTIwZWR1Y2F0aW9uJTIwc2NpZW5jZXxlbnwxfHx8fDE3NzE3OTI3MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      title: "ScanVue AI — TB Detection System",
+      description:
+        "AI-powered TB screening system that analyses chest X-rays to detect and localise Tuberculosis lesions. Outputs an annotated heatmap with confidence score and auto-generated clinical PDF report. Built for real-world clinical deployment with DICOM support.",
+      role: "Lead AI Scientist",
+      status: "building",
+      technologies: ["Python", "PyTorch", "Computer Vision", "TensorFlow", "Flask", "DICOM"],
+      metrics: ["DICOM support", "Heatmap + PDF reports", "v3.0.4"],
+      image:
+        "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
-      title: "Sentiment Analyser App",
-      description: "Developed a real-time sentiment analysis system for social media data using NLP techniques. Processed over 1M tweets daily with 88% accuracy.",
-      technologies: ["Python", "NLTK", "TensorFlow"],
-      image: "https://images.unsplash.com/photo-1605909247405-077c153bc75b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50aW1lbnQlMjBhbmFseXNpcyUyMGVtb3Rpb25zJTIwZGF0YXxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      title: "ScanVue AI — Bovine Biometric ID",
+      description:
+        "End-to-end cow identification system using unique muzzle-pattern recognition. Phase 1 (instance segmentation) shipped. Phase 2 (pattern matching & re-ID) actively in development.",
+      role: "Lead AI Scientist",
+      status: "building",
+      technologies: ["Python", "PyTorch", "YOLO", "Vision Transformer", "DEiT", "Attention Models", "FastAPI"],
+      metrics: ["Phase 1 shipped May 2026", "Phase 2 in progress", "No-contact biometrics"],
+      image:
+        "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
       title: "Dog Muzzle Detection",
-      description: "A system for identifying unique muzzle pattern on dog nose.",
-      technologies: ["Python", "Pytorch", "YOLO", "Vission Transformer", "DEiT", "Attention Models"],
-      image: "https://images.unsplash.com/photo-1698522372694-7bf8500a5b63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBub3NlJTIwY2xvc2UlMjB1cHxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      //demoUrl: "https://your-dashboard.herokuapp.com"
-    }
+      description:
+        "Pattern recognition system identifying individual dogs via unique muzzle prints — prototype for non-invasive animal biometric ID using deep learning.",
+      technologies: ["Python", "PyTorch", "YOLO", "Vision Transformer", "DEiT", "Attention Models"],
+      status: "shipped",
+      metrics: ["Muzzle-pattern matching", "No physical tags needed"],
+      image:
+        "https://images.unsplash.com/photo-1698522372694-7bf8500a5b63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBub3NlJTIwY2xvc2UlMjB1cHxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      title: "Sentiment Analyser App",
+      description:
+        "Real-time sentiment analysis pipeline for social media data using NLP. Processes live tweet streams and classifies sentiment at scale.",
+      technologies: ["Python", "NLTK", "TensorFlow", "Streamlit"],
+      status: "shipped",
+      metrics: ["1M+ tweets/day", "88% accuracy"],
+      image:
+        "https://images.unsplash.com/photo-1605909247405-077c153bc75b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50aW1lbnQlMjBhbmFseXNpcyUyMGVtb3Rpb25zJTIwZGF0YXxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      title: "ECG Sleep Stage Classifier",
+      description:
+        "Mathematical biometric model classifying sleep stages from raw ECG signals. Built during research internship at HTIC, IIT Madras.",
+      role: "Algorithm Developer Intern — HTIC, IIT Madras",
+      technologies: ["Python", "Signal Processing", "TensorFlow", "Biometrics"],
+      status: "shipped",
+      metrics: ["87% accuracy", "ECG-based, no wearables"],
+      image:
+        "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      title: "Physics-Only Assistant",
+      description:
+        "Physics-constrained conversational AI that refuses to answer outside its domain. Built with local LLM inference via Ollama and a RAG pipeline over physics textbooks.",
+      technologies: ["Python", "Ollama", "RAG", "Streamlit", "LangChain"],
+      status: "shipped",
+      image:
+        "https://images.unsplash.com/photo-1758685734312-5134968399a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaHlzaWNzJTIwZWR1Y2F0aW9uJTIwc2NpZW5jZXxlbnwxfHx8fDE3NzE3OTI3MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
   ];
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       ref={containerRef}
       className="min-h-screen py-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 mb-12">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -58,7 +105,7 @@ export function Projects() {
             Featured <span className="text-orange-400">Projects</span>
           </h2>
           <p className="text-gray-400 text-lg">
-            A selection of my recent data science work
+            A selection of my recent AI & data science work
           </p>
         </motion.div>
       </div>
@@ -67,15 +114,15 @@ export function Projects() {
       <div className="relative">
         <div className="flex gap-8 px-8 md:px-16 lg:px-24 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
           {projects.map((project, index) => (
-            <ProjectCard 
-              key={index} 
-              project={project} 
+            <ProjectCard
+              key={index}
+              project={project}
               index={index}
               scrollYProgress={scrollYProgress}
             />
           ))}
         </div>
-        
+
         {/* Gradient Overlays */}
         <div className="absolute left-0 top-0 bottom-8 w-32 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-8 w-32 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
@@ -84,39 +131,47 @@ export function Projects() {
   );
 }
 
-function ProjectCard({ project, index, scrollYProgress }: { project: Project; index: number; scrollYProgress: any }) {
+function ProjectCard({
+  project,
+  index,
+  scrollYProgress,
+}: {
+  project: Project;
+  index: number;
+  scrollYProgress: any;
+}) {
   const cardRef = useRef(null);
   const { scrollYProgress: cardProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const y = useTransform(cardProgress, [0, 0.5, 1], [100, 0, -100]);
   const opacity = useTransform(cardProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const scale = useTransform(cardProgress, [0, 0.5, 1], [0.8, 1, 0.9]);
   const rotateY = useTransform(cardProgress, [0, 0.5, 1], [15, 0, -15]);
 
   return (
-    <motion.div 
+    <motion.div
       ref={cardRef}
       className="group min-w-[350px] md:min-w-[450px] snap-center"
-      style={{ 
-        y, 
-        opacity, 
+      style={{
+        y,
+        opacity,
         scale,
-        perspective: "1000px"
+        perspective: "1000px",
       }}
     >
       <motion.div
         className="backdrop-blur-lg bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-orange-500 transition-all duration-500 h-full shadow-xl"
         style={{ rotateY }}
-        whileHover={{ 
+        whileHover={{
           y: -12,
           rotateY: 0,
-          transition: { duration: 0.3 }
+          transition: { duration: 0.3 },
         }}
       >
-        <div className="relative h-72 overflow-hidden bg-gray-800">
+        <div className="relative h-64 overflow-hidden bg-gray-800">
           <motion.div
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.6 }}
@@ -129,10 +184,32 @@ function ProjectCard({ project, index, scrollYProgress }: { project: Project; in
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+
+          {/* Status Badge */}
+          {project.status && (
+            <div className="absolute top-3 right-3">
+              {project.status === 'building' ? (
+                <span className="px-2 py-1 text-xs font-medium bg-orange-500/20 text-orange-400 border border-orange-500/40 rounded-full backdrop-blur-sm">
+                  🔨 Building
+                </span>
+              ) : (
+                <span className="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/40 rounded-full backdrop-blur-sm">
+                  ✓ Shipped
+                </span>
+              )}
+            </div>
+          )}
         </div>
-        
+
         <div className="p-6">
-          <motion.h3 
+          {/* Role label */}
+          {project.role && (
+            <p className="text-xs text-orange-400/70 uppercase tracking-wider mb-2 font-medium">
+              {project.role}
+            </p>
+          )}
+
+          <motion.h3
             className="text-2xl text-white mb-3 group-hover:text-orange-400 transition-colors font-medium"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -141,9 +218,9 @@ function ProjectCard({ project, index, scrollYProgress }: { project: Project; in
           >
             {project.title}
           </motion.h3>
-          
-          <motion.p 
-            className="text-gray-400 mb-4 leading-relaxed min-h-[60px]"
+
+          <motion.p
+            className="text-gray-400 mb-4 leading-relaxed min-h-[60px] text-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -151,10 +228,24 @@ function ProjectCard({ project, index, scrollYProgress }: { project: Project; in
           >
             {project.description}
           </motion.p>
-          
+
+          {/* Metrics */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.metrics.map((metric, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-1 text-xs bg-orange-500/10 text-orange-300 rounded border border-orange-500/20"
+                >
+                  {metric}
+                </span>
+              ))}
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies.map((tech, techIndex) => (
-              <motion.span 
+              <motion.span
                 key={techIndex}
                 className="px-3 py-1 text-xs bg-gray-800 text-orange-400 rounded-full border border-gray-700 group-hover:border-orange-500 transition-colors"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -167,16 +258,16 @@ function ProjectCard({ project, index, scrollYProgress }: { project: Project; in
               </motion.span>
             ))}
           </div>
-          
+
           <div className="flex gap-4 pt-4 border-t border-gray-800">
             {project.demoUrl && (
-              <motion.a 
+              <motion.a
                 href={project.demoUrl}
-                className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors font-medium"
+                className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors font-medium text-sm"
                 whileHover={{ scale: 1.05, x: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ExternalLink className="w-5 h-5" />
+                <ExternalLink className="w-4 h-4" />
                 <span>Live Demo</span>
               </motion.a>
             )}

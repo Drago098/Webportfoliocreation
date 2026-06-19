@@ -47,7 +47,7 @@ const techStacks: TechStack[] = [
   {
     id: 5,
     category: "Machine Learning & Statistical Modeling",
-    skills: ["Statistical Modelling", "TensorFlow"],
+    skills: ["Statistical Modelling", "TensorFlow", "PyTorch"],
     icon: <Brain className="w-8 h-8" />,
     color: "indigo",
     gradient: "from-indigo-500 to-purple-500"
@@ -55,7 +55,7 @@ const techStacks: TechStack[] = [
   {
     id: 6,
     category: "Computer Vision",
-    skills: ["YOLO","Vision Image Transformers","Convolutional Neural Networks"],
+    skills: ["YOLO", "Vision Transformers", "DEiT", "Attention Models", "CNNs"],
     icon: <Eye className="w-8 h-8" />,
     color: "yellow",
     gradient: "from-yellow-500 to-orange-500"
@@ -116,7 +116,6 @@ export function TechStackViz() {
 
   return (
     <section className="min-h-screen py-20 px-8 md:px-16 lg:px-24 flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Title */}
       <motion.div
         className="text-center mb-16 z-10"
         initial={{ opacity: 0, y: -30 }}
@@ -133,7 +132,6 @@ export function TechStackViz() {
         <p className="text-gray-400 text-lg">Hover over each card to explore my technical expertise</p>
       </motion.div>
 
-      {/* Birds Eye View Grid */}
       <div className="max-w-7xl mx-auto w-full z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {techStacks.map((stack, index) => (
@@ -143,8 +141,8 @@ export function TechStackViz() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ 
-                duration: 0.4, 
+              transition={{
+                duration: 0.4,
                 delay: index * 0.05,
                 ease: "easeOut"
               }}
@@ -152,7 +150,6 @@ export function TechStackViz() {
               onHoverEnd={() => setHoveredId(null)}
               onClick={() => setSelectedId(selectedId === stack.id ? null : stack.id)}
             >
-              {/* Card */}
               <motion.div
                 className="relative backdrop-blur-xl bg-white/5 border rounded-2xl p-6 h-full overflow-hidden"
                 animate={{
@@ -162,17 +159,13 @@ export function TechStackViz() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 style={{ willChange: 'transform' }}
               >
-                {/* Gradient overlay on hover */}
                 <motion.div
                   className={`absolute inset-0 bg-gradient-to-br ${stack.gradient} pointer-events-none`}
                   initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: hoveredId === stack.id ? 0.1 : 0,
-                  }}
+                  animate={{ opacity: hoveredId === stack.id ? 0.1 : 0 }}
                   transition={{ duration: 0.2 }}
                 />
 
-                {/* Glow effect */}
                 {hoveredId === stack.id && (
                   <motion.div
                     className={`absolute -inset-1 bg-gradient-to-r ${stack.gradient} rounded-2xl blur-xl pointer-events-none`}
@@ -184,32 +177,25 @@ export function TechStackViz() {
                   />
                 )}
 
-                {/* Icon */}
                 <motion.div
                   className={`text-${stack.color}-400 mb-4 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${stack.gradient} bg-opacity-20`}
-                  animate={{
-                    scale: hoveredId === stack.id ? 1.1 : 1,
-                  }}
+                  animate={{ scale: hoveredId === stack.id ? 1.1 : 1 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   style={{ willChange: 'transform' }}
                 >
                   {stack.icon}
                 </motion.div>
 
-                {/* Category */}
                 <h3 className="text-xl font-bold text-white mb-4">
                   {stack.category}
                 </h3>
 
-                {/* Skills - Always visible or expand on click */}
                 <motion.div
                   className="space-y-2"
-                  animate={{ 
-                    opacity: selectedId === stack.id || hoveredId === stack.id ? 1 : 0.7,
-                  }}
+                  animate={{ opacity: selectedId === stack.id || hoveredId === stack.id ? 1 : 0.7 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {stack.skills.map((skill, skillIndex) => (
+                  {stack.skills.map((skill) => (
                     <div
                       key={skill}
                       className={`px-4 py-2 rounded-lg bg-gradient-to-r ${stack.gradient} bg-opacity-10 backdrop-blur-sm border border-white/10 text-white text-sm transition-transform hover:scale-105 duration-200`}
@@ -219,19 +205,15 @@ export function TechStackViz() {
                   ))}
                 </motion.div>
 
-                {/* Number badge */}
                 <motion.div
                   className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white text-sm font-bold"
-                  animate={{
-                    scale: hoveredId === stack.id ? 1.15 : 1,
-                  }}
+                  animate={{ scale: hoveredId === stack.id ? 1.15 : 1 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   style={{ willChange: 'transform' }}
                 >
                   {stack.id}
                 </motion.div>
 
-                {/* Simplified particle effects on hover */}
                 {hoveredId === stack.id && (
                   <>
                     {[...Array(3)].map((_, i) => (
@@ -263,7 +245,6 @@ export function TechStackViz() {
         </div>
       </div>
 
-      {/* Bottom stats */}
       <motion.div
         className="mt-16 flex flex-wrap justify-center gap-8 z-10"
         initial={{ opacity: 0, y: 30 }}
@@ -273,8 +254,8 @@ export function TechStackViz() {
       >
         {[
           { label: "Tech Categories", value: "12" },
-          { label: "Technologies", value: "25+" },
-          { label: "Years Experience", value: "4" },
+          { label: "Technologies", value: "30+" },
+          { label: "Years Experience", value: "5" },
         ].map((stat, index) => (
           <motion.div
             key={stat.label}

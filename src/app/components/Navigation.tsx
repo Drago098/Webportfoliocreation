@@ -37,7 +37,6 @@ export function Navigation() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-        {/* Logo */}
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="text-xl"
@@ -45,10 +44,9 @@ export function Navigation() {
           whileTap={{ scale: 0.95 }}
         >
           <span className="text-orange-400">Ayush</span>
-          <span className="text-white"> | Data Scientist</span>
+          <span className="text-white"> | AI Scientist</span>
         </motion.button>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex gap-8">
           {navLinks.map((link, index) => (
             <motion.button
@@ -66,7 +64,6 @@ export function Navigation() {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <motion.button
           className="md:hidden text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -76,10 +73,9 @@ export function Navigation() {
         </motion.button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="md:hidden bg-black/95 backdrop-blur-sm border-t border-gray-800"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}

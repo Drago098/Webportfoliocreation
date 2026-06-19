@@ -33,7 +33,7 @@ export function Projects() {
       technologies: ["Python", "PyTorch", "Computer Vision", "TensorFlow", "Flask", "DICOM"],
       metrics: ["DICOM support", "Heatmap + PDF reports", "v3.0.4"],
       image:
-        "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+        "https://images.unsplash.com/photo-1631651363531-fd29aec4cb5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxjaGVzdCUyMHhyYXklMjByYWRpb2xvZ3l8ZW58MXx8fHwxNzgxODk4MDAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
       title: "ScanVue AI — Bovine Biometric ID",
@@ -75,7 +75,7 @@ export function Projects() {
       status: "shipped",
       metrics: ["87% accuracy", "ECG-based, no wearables"],
       image:
-        "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+        "https://images.unsplash.com/photo-1724395261682-c8b152dc5b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw0fHxFQ0clMjBlbGVjdHJvY2FyZGlvZ3JhbSUyMGhlYXJ0JTIwbW9uaXRvcnxlbnwxfHx8fDE3ODE4OTgwNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
       title: "Physics-Only Assistant",

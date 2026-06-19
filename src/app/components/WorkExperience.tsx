@@ -15,6 +15,15 @@ interface Experience {
 export function WorkExperience() {
   const experiences: Experience[] = [
     {
+      company: "Scanvue AI",
+      position: "Lead AI Scientist",
+      location: "Remote",
+      startDate: "May 2025",
+      endDate: "Present",
+      year: 2025,
+      responsibilities: []
+    },
+    {
       company: "TATA Consultancy Services",
       position: "Data Analyst",
       location: "New Delhi, India",
@@ -88,7 +97,7 @@ export function WorkExperience() {
           </p>
 
           {/* Year Slider */}
-          <div className="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="relative flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
             <motion.button
               onClick={() => setSelectedYear('all')}
               className={`px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 backdrop-blur-md border ${

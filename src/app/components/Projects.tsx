@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
@@ -8,7 +8,6 @@ interface Project {
   description: string;
   technologies: string[];
   image: string;
-  githubUrl?: string;
   colaburl?: string;
   demoUrl?: string;
 }
@@ -26,29 +25,19 @@ export function Projects() {
       description: "physics-constrained conversational AI system built with ollama+streamlit",
       technologies: ["Python", "Ollama", "RAG", "Streamlit"],
       image: "https://images.unsplash.com/photo-1758685734312-5134968399a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaHlzaWNzJTIwZWR1Y2F0aW9uJTIwc2NpZW5jZXxlbnwxfHx8fDE3NzE3OTI3MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      githubUrl: "https://github.com/Drago098/physics-only-assistant",
     },
     {
       title: "Sentiment Analyser App",
       description: "Developed a real-time sentiment analysis system for social media data using NLP techniques. Processed over 1M tweets daily with 88% accuracy.",
       technologies: ["Python", "NLTK", "TensorFlow"],
       image: "https://images.unsplash.com/photo-1605909247405-077c153bc75b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50aW1lbnQlMjBhbmFseXNpcyUyMGVtb3Rpb25zJTIwZGF0YXxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      githubUrl: "https://github.com/Drago098/Sentiment_Analyser_app",
     },
     {
       title: "Dog Muzzle Detection",
       description: "A system for identifying unique muzzle pattern on dog nose.",
       technologies: ["Python", "Pytorch", "YOLO", "Vission Transformer", "DEiT", "Attention Models"],
       image: "https://images.unsplash.com/photo-1698522372694-7bf8500a5b63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBub3NlJTIwY2xvc2UlMjB1cHxlbnwxfHx8fDE3NzE3OTgyMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      githubUrl: "https://github.com/Drago098/Dog_muzzle_detection/tree/main",
       //demoUrl: "https://your-dashboard.herokuapp.com"
-    },
-    {
-      title: "Image Classification System",
-      description: "Implemented a deep learning model for image classification achieving 95% accuracy on custom dataset. Deployed using FastAPI and Docker.",
-      technologies: ["Python", "PyTorch", "FastAPI", "Docker"],
-      image: "https://images.unsplash.com/photo-1695902173528-0b15104c4554?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21wdXRlciUyMHZpc2lvbiUyMGRlZXAlMjBsZWFybmluZ3xlbnwxfHx8fDE3NzE3OTI3MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      githubUrl: "https://github.com/yourusername/image-classifier",
     }
   ];
 
@@ -180,17 +169,6 @@ function ProjectCard({ project, index, scrollYProgress }: { project: Project; in
           </div>
           
           <div className="flex gap-4 pt-4 border-t border-gray-800">
-            {project.githubUrl && (
-              <motion.a 
-                href={project.githubUrl}
-                className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors font-medium"
-                whileHover={{ scale: 1.05, x: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github className="w-5 h-5" />
-                <span>View Code</span>
-              </motion.a>
-            )}
             {project.demoUrl && (
               <motion.a 
                 href={project.demoUrl}
